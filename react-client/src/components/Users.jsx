@@ -23,10 +23,10 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const User = (props) => {
-  const [raised, setRaised] = useState(false);
-  const [open, setOpen] = useState(false);
   const { user, index } = props
   const classes = useStyles();
+  const [raised, setRaised] = useState(false);
+  const [open, setOpen] = useState(false);
   const toggleRaised = () => setRaised(!raised);  
   const toggleDropdown = () => setOpen(!open);
 

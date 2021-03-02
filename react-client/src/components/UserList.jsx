@@ -22,7 +22,6 @@ const UserList = () => {
         {data && (
           <>
           {data.users.map((user, index) => (
-            
             <Grid key={user.id + index } item>
               <User key={user.id + index } user={user} index={index}/>
             </Grid>

@@ -1,4 +1,4 @@
-import React, { Component} from 'react';
+import React from 'react';
 import UserList from '../src/components/UserList';
 import Container from '@material-ui/core/Container';
 import AppBar from '@material-ui/core/AppBar';

@@ -1,16 +1,81 @@
-import React from 'react';
+import React, { useState } from 'react';
+import Card from '@material-ui/core/Card';
+import CardActions from '@material-ui/core/CardActions';
+import CardContent from '@material-ui/core/CardContent';
+import Typography from '@material-ui/core/Typography';
+import Accordion from '@material-ui/core/Accordion';
+import AccordionSummary from '@material-ui/core/AccordionSummary';
+import AccordionDetails from '@material-ui/core/AccordionDetails';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemText from '@material-ui/core/ListItemText';
+import ListItemAvatar from '@material-ui/core/ListItemAvatar';
+import Avatar from '@material-ui/core/Avatar';
+import EmailIcon from '@material-ui/icons/Email';
+import PhoneIcon from '@material-ui/icons/Phone';
+import Divider from '@material-ui/core/Divider';
+import ExpandLess from '@material-ui/icons/ExpandLess';
+import ExpandMore from '@material-ui/icons/ExpandMore';
+import Collapse from '@material-ui/core/Collapse';
+import { makeStyles } from '@material-ui/core/styles';
 
+const useStyles = makeStyles((theme) => ({
+  card: {
+    height: 'auto',
+    width: 350,
+  },
+}));
 
 const User = (props) => {
-  const { user } = props
+  const [raised, setRaised] = useState(false);
+  const [open, setOpen] = useState(false);
+  const { user, index } = props
+  const classes = useStyles();
+  const toggleRaised = () => setRaised(!raised);  
+  const toggleDropdown = () => setOpen(!open);
+
   return (
-    <div>
-      <ul>
-        <li>{user.name}</li>
-        <li>{user.phone}</li>
-        <li>{user.email}</li>
-      </ul>
-    </div>
+    <Card
+      onMouseOver={toggleRaised}
+      onMouseOut={toggleRaised}
+      raised={raised}
+      className={classes.card}>
+      <CardContent>
+        <Typography color="textSecondary">
+          Name
+        </Typography>
+        <Typography variant="h5">
+          {user.name}
+        </Typography>
+        <List key={user.id + index}>
+          <ListItem button onClick={toggleDropdown}>
+            <ListItemText primary="Contact Information"/>
+            {open ? <ExpandLess/> : <ExpandMore/>}
+          </ListItem>
+          <Collapse in={open} timeout="auto" unmountOnExit>
+            <List component="div">
+              <ListItem component="a" href={"mailto:" + user.email}>
+                <ListItemAvatar>
+                  <Avatar>
+                    <EmailIcon/>
+                  </Avatar>
+                </ListItemAvatar>
+                <ListItemText primary={user.email}/>
+              </ListItem>
+              <Divider variant="inset" component="li" />
+              <ListItem>
+                <ListItemAvatar>
+                  <Avatar>
+                    <PhoneIcon/>
+                  </Avatar>
+                </ListItemAvatar>
+                <ListItemText primary={user.phone}/>
+              </ListItem>
+            </List>
+          </Collapse>
+        </List>
+      </CardContent>
+    </Card>
   );
 };
 

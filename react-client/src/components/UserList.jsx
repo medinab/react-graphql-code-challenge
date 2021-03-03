@@ -1,7 +1,7 @@
 import React from 'react';
 import User from '../components/Users';
-import { useQuery, gql } from '@apollo/client';
 import Grid from '@material-ui/core/Grid';
+import { useQuery, gql } from '@apollo/client';
 
 const USERS_QUERY = gql`
  query users {
@@ -11,8 +11,7 @@ const USERS_QUERY = gql`
      phone
      email
    }
- }
-`;
+ }`;
 
 const UserList = () => {
   const { data } = useQuery(USERS_QUERY);

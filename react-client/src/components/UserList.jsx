@@ -20,9 +20,9 @@ const UserList = () => {
       <Grid container justify="center" spacing={2}>
         {data && (
           <>
-          {data.users.map((user, index) => (
-            <Grid key={user.id + index } item>
-              <User key={user.id + index } user={user} index={index}/>
+          {data.users.map((user) => (
+            <Grid key={user.id} item>
+              <User key={user.id} user={user}/>
             </Grid>
           ))}
           </>

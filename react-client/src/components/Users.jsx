@@ -23,7 +23,7 @@ const useStyles = makeStyles(() => ({
 }));
 
 const User = (props) => {
-  const { user, index } = props
+  const { user } = props
   const classes = useStyles();
   const [raised, setRaised] = useState(false);
   const [open, setOpen] = useState(false);
@@ -43,7 +43,7 @@ const User = (props) => {
         <Typography variant="h5">
           {user.name}
         </Typography>
-        <List key={user.id + index}>
+        <List key={user.id}>
           <ListItem button onClick={toggleDropdown}>
             <ListItemText primary="Contact Information"/>
             {open ? <ExpandLess/> : <ExpandMore/>}

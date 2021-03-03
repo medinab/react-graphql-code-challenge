@@ -1,27 +1,25 @@
 import React from 'react';
 import User from '../components/Users';
-import { useQuery, gql } from '@apollo/client';
 import Grid from '@material-ui/core/Grid';
 
-const USERS_QUERY = gql`
- query users {
-   users {
-     id
-     name
-     phone
-     email
-   }
- }
-`;
 
-const UserList = () => {
-  const { data } = useQuery(USERS_QUERY);
+const UserList = (props) => {
+  const { users } = props;
+  // let { data } = useQuery(USERS_QUERY);
+
+  // if (search) {      
+  //   let { data } = useQuery(SEARCH_QUERY, {
+  //     variables: {search}
+  //   });
+  // }
+
+  // console.log(search);
   return (
     <div style={{ height: '100%' }}>
       <Grid container justify="center" spacing={2}>
-        {data && (
+        {users && (
           <>
-          {data.users.map((user, index) => (
+          {users.map((user, index) => (
             <Grid key={user.id + index } item>
               <User key={user.id + index } user={user} index={index}/>
             </Grid>
